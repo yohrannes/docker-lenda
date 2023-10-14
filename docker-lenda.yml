@@ -1,0 +1,13 @@
+jpsType: install
+name: imagemdocker
+logo: https://github.com/yohrannes/docker-lenda/blob/main/images/logo-kanji.webp
+
+nodes:
+  fixedCloudlets: 1
+  flexibleCloudlets: 8
+  image: yohrannes/lenda:latest
+  nodeGroup: cp
+
+onInstall:
+  cmd[cp]:
+    mkdir -p /opt/containerd/; wget 
