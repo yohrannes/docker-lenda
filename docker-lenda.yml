@@ -4,18 +4,15 @@ logo: https://github.com/yohrannes/docker-lenda/blob/main/images/logo-kanji.webp
 
 nodes:
   fixedCloudlets: 1
-  flexibleCloudlets: 8
+  flexibleCloudlets: 20
   image: yohrannes/lenda:latest
   nodeGroup: docker
   extipv6: 1
   isSLBAccessEnabled: false
   diskLimit: 20G
 
+skipNodeEmails: true
+
 onInstall:
   cmd[docker]:
-    echo teste
-    sshport=$(cat /etc/ssh/sshd_config | grep -e '^Port' | cut -d ' ' -f 2)
-
-success:
-  text:
-    en: "ssh port = ${sshport}"
+    chmod a+x /root/scripts/*

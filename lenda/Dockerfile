@@ -23,11 +23,7 @@ RUN sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/
 RUN sudo yum install -y docker-ce docker-ce-cli containerd.io
 RUN systemctl enable docker
 
-RUN yum install -y openssh-server
-RUN yum install -y openssh-clients
 RUN yum install -y passwd
-RUN sed -i 's/PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN echo 'root:34611362' | chpasswd
 
 COPY . .
 RUN mkdir rep-github; mkdir rep-dockerhub

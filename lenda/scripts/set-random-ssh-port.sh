@@ -1,11 +1,21 @@
 #!/bin/bash
 RANDOM=$$
-read -p "Actual port = "$RANDOM" confirm ?" confirmport
+sshport=$RANDOM
+read -p "Actual port = "$sshport" confirm ?" confirmport
 if [[ "$confirmport" == [yY] ]]; then
-    echo "Port $RANDOM" >> /etc/ssh/sshd_config
+    portline=$(grep -n "Port 22" /etc/ssh/sshd_config | cut -f1 -d:)
+    sed -i "${portline}s/#//" /etc/ssh/sshd_config
+    sed -i "${portline}s/22/$sshport/" /etc/ssh/sshd_config
+    pubkeyline=$(grep -n "PubkeyAuthentication yes" /etc/ssh/sshd_config | cut -f1 -d:)
+    sed -i "${pubkeyline}s/#//" /etc/ssh/sshd_config
+    read -p "Paste your private key: " sshkey
+    echo "$sshkey" >> /root/.ssh/authorized_keys
     systemctl restart sshd
-    read -p "Your new ssh port is $RANDOM" pause
+    service sshd restart
+    read -p "Your new ssh port is $sshport" pause
 else
+    echo value not recognized...
+    sleep 2
     echo cancelled...
     sleep 2
 fi
