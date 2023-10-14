@@ -8,7 +8,14 @@ nodes:
   image: yohrannes/lenda:latest
   nodeGroup: docker
   extipv6: 1
+  isSLBAccessEnabled: false
+  diskLimit: 20G
 
 onInstall:
   cmd[docker]:
-    mkdir -p /opt/containerd/; wget -O /opt/containerd/manifest.yml https://github.com/yohrannes/docker-lenda/blob/main/manifest.yml
+    echo teste
+    sshport=$(cat /etc/ssh/sshd_config | grep -e '^Port' | cut -d ' ' -f 2)
+
+success:
+  text:
+    en: "ssh port = ${sshport}"
