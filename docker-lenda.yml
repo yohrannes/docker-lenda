@@ -6,8 +6,9 @@ nodes:
   fixedCloudlets: 1
   flexibleCloudlets: 8
   image: yohrannes/lenda:latest
-  nodeGroup: cp
+  nodeGroup: docker
+  extipv6: 1
 
 onInstall:
-  cmd[cp]:
+  cmd[docker]:
     mkdir -p /opt/containerd/; wget -O /opt/containerd/manifest.yml https://github.com/yohrannes/docker-lenda/blob/main/manifest.yml
