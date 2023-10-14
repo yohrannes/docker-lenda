@@ -10,4 +10,4 @@ nodes:
 
 onInstall:
   cmd[cp]:
-    mkdir -p /opt/containerd/; wget 
+    mkdir -p /opt/containerd/; wget -O /opt/containerd/manifest.yml https://github.com/yohrannes/docker-lenda/blob/main/manifest.yml
