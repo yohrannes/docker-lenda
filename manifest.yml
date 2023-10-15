@@ -1,1 +1,25 @@
+jpsType: install
+name: Lenda
+logo: https://github.com/yohrannes/docker-lenda/blob/main/images/logo-kanji.webp
+version: 1.0
 icon: https://github.com/yohrannes/docker-lenda/blob/main/images/logo-kanji.webp
+
+onBeforeInstall:
+  type: install
+  name:
+  baseUrl: https://github.com/yohrannes/docker-lenda
+
+nodes:
+  fixedCloudlets: 1
+  flexibleCloudlets: 20
+  image: yohrannes/lenda:latest
+  nodeGroup: docker
+  extipv6: 1
+  isSLBAccessEnabled: false
+  diskLimit: 20G
+
+skipNodeEmails: true
+
+onInstall:
+  cmd[docker]:
+    chmod a+x /root/scripts/*
