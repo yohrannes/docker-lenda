@@ -1,6 +1,8 @@
 jpsType: install
 name: Lenda
 logo: https://github.com/yohrannes/docker-lenda/blob/main/images/logo-kanji.webp
+version: 1.0
+baseUrl: https://github.com/yohrannes/docker-lenda
 
 nodes:
   fixedCloudlets: 1
