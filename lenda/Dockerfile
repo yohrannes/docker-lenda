@@ -17,6 +17,9 @@ RUN mkdir rep-github
 
 # Download needed files
 RUN wget -P /root/downloads https://mega.nz/linux/repo/CentOS_8/x86_64/megacmd-CentOS_8.x86_64.rpm
+WORKDIR /root/rep-github
+RUN git clone https://github.com/yohrannes/website-portifolio.git
+WORKDIR /root
 
 # Installing Github CLI
 RUN VERSION=`curl  "https://api.github.com/repos/cli/cli/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/' | cut -c2-`; wget https://github.com/cli/cli/releases/download/v${VERSION}/gh_${VERSION}_linux_amd64.tar.gz /root/downloads; tar xvf gh_${VERSION}_linux_amd64.tar.gz; sudo cp gh_${VERSION}_linux_amd64/bin/gh /usr/local/bin/
@@ -41,6 +44,6 @@ RUN pip3 install Flask requests
 
 RUN sudo dnf install -y "/root/downloads/megacmd-CentOS_8.x86_64.rpm"
 
-# Installing Kubernetes
+EXPOSE 5000
 
-CMD ["sh", "-c", "exec /sbin/init"]
+CMD ["sh", "-c", "exec /sbin/init && python3 /root/website-portifolio/app.py"]
