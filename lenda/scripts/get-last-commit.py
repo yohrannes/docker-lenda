@@ -22,8 +22,8 @@ else:
     
 if actual_commit_sha != latest_commit_sha:
     print ("updating website folders....")
-    workdir = "/root/repos-github/website-portifolio"
-    os.chdir(workdir)x'
+    workdir = "/root/rep-github/website-portifolio"
+    os.chdir(workdir)
     command = "sudo lsof -t -i tcp:5000 | xargs sudo kill -9;git pull origin main;python3 app.py"
     os.system(command)
 else:
