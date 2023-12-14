@@ -12,7 +12,7 @@ RUN sudo dnf install net-tools -y
 RUN yum install -y passwd
 
 # Making needed folders
-RUN mkdir downloads;
+RUN mkdir downloads
 RUN mkdir rep-github
 
 # Installing Github CLI
@@ -33,10 +33,8 @@ RUN yum install gcc openssl-devel bzip2-devel libffi-devel -y
 RUN sudo yum install -y python3 python3-pip
 RUN pip3 install Flask requests
 RUN set FLASK_ENV=developmennt
-<<<<<<< HEAD
-=======
-EXPOSE 5000
->>>>>>> 409f6cb2185ea0f663528fa25936ca7d0a350cce
+
+COPY . .
 
 # Download needed files
 RUN wget -P /root/downloads https://mega.nz/linux/repo/CentOS_8/x86_64/megacmd-CentOS_8.x86_64.rpm
@@ -48,8 +46,3 @@ WORKDIR /root
 # Installing Mega-CMD
 
 RUN sudo dnf install -y "/root/downloads/megacmd-CentOS_8.x86_64.rpm"
-<<<<<<< HEAD
-=======
-
-# CMD [ "python3", "/root/rep-github/website-portifolio/app.py" ]
->>>>>>> 409f6cb2185ea0f663528fa25936ca7d0a350cce

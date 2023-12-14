@@ -1,5 +1,6 @@
 import requests
 import subprocess
+import os
 
 
 username = "yohrannes" # substitua pelo nome de usuário do GitHub
@@ -22,3 +23,7 @@ if actual_commit_sha != latest_commit_sha:
     print ("commit atualizado")
 else:
     print ("commit em dia")
+    workdir = "/root/rep-github/website-portifolio"
+    os.chdir(workdir)
+    command = "git pull origin main"
+    os.system(command)
