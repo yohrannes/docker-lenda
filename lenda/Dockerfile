@@ -47,3 +47,6 @@ RUN sudo dnf install -y "/root/downloads/megacmd-CentOS_8.x86_64.rpm"
 # Installing TMUX
 
 RUN sudo yum install tmux -y
+
+#test docker instalation
+RUN curl -fsSL https://get.docker.com | bash
