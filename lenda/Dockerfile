@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:20.04
 WORKDIR /root
 
 RUN apt-get update -y; apt-get upgrade -y;
@@ -10,6 +10,7 @@ RUN mkdir rep-github
 
 # Installing Github CLI
 WORKDIR /root/downloads
+RUN curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh
 RUN type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
 RUN sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
@@ -39,13 +40,13 @@ RUN sudo apt-get install -y git;
 COPY . .
 RUN chmod +x /root/scripts/*
 WORKDIR /root/downloads
-RUN wget https://mega.nz/linux/repo/xUbuntu_22.04/amd64/megacmd-xUbuntu_22.04_amd64.deb
+RUN wget https://mega.nz/linux/repo/xUbuntu_20.04/amd64/megacmd-xUbuntu_20.04_amd64.deb
 
 WORKDIR /root
 
 # Installing Mega-CMD
 
-RUN sudo apt install "/root/downloads/megacmd-xUbuntu_22.04_amd64.deb" -y
+RUN sudo apt install "/root/downloads/megacmd-xUbuntu_20.04_amd64.deb" -y
 
 # Installing TMUX
 
