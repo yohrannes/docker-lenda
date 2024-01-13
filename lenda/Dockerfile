@@ -52,4 +52,10 @@ RUN sudo apt install "/root/downloads/megacmd-xUbuntu_20.04_amd64.deb" -y
 
 RUN sudo apt-get install tmux -y
 
+# Node JS
+
+RUN curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh1
+RUN bash install_nvm.sh1
+RUN nvm install --lts
+
 # CMD ["sh", "-c", "exec /sbin/init"]
